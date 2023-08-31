@@ -28,7 +28,8 @@ const loadIdData =async (categoryId) =>{
     console.log(data);
     const cardContainer = document.getElementById('card-container')
     cardContainer.innerHTML = ``;
-    data.forEach((newsIdData) => {
+    const shortView = data.sort((a,b) => a.total_view - b.total_view);
+    shortView.forEach((newsIdData) => {
         console.log(newsIdData);
         const div = document.createElement('div')
         div.innerHTML = `
