@@ -25,12 +25,12 @@ const loadIdData =async (categoryId) =>{
    const res =await fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`)
    const allData =await res.json()
     const data   = allData.data;
-    console.log(data);
+    // console.log(data);
     const cardContainer = document.getElementById('card-container')
     cardContainer.innerHTML = ``;
     const shortView = data.sort((a,b) => a.total_view - b.total_view);
     shortView.forEach((newsIdData) => {
-        console.log(newsIdData);
+        // console.log(newsIdData);
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card  bg-base-100 shadow-xl">
@@ -63,10 +63,9 @@ const loadIdData =async (categoryId) =>{
         cardContainer.appendChild(div)
         
     })
-    // console.log(data);
+  
 }
- 
-// loadIdData()
+
 
 
 const modalShowDetails =async (newsData) => {
@@ -75,22 +74,22 @@ const modalShowDetails =async (newsData) => {
   const data = allData.data[0];
   console.log(data);
     
-    const modalContainer = document.getElementById("modal-container")
-    const modalDiv = document.createElement("div")
-    modalDiv.innerHTML = `
+    const modalContainer = document.getElementById("my_modal_1");
+    modalContainer.innerHTML = `
    
-    <dialog id="my_modal_1" class="modal">
+     
       <form method="dialog" class="modal-box">
-        <h3 class="font-bold text-lg"></h3>
-        <p class="py-4">Press ESC key or click the button below to close</p>
+      <img src="${data.image_url}" alt="image_url">
+        <h3 class="font-bold text-lg">${data.title}</h3>
+        <p class="py-4">${data.details}</p>
         <div class="modal-action">
           <!-- if there is a button in form, it will close the modal -->
           <button class="btn">Close</button>
         </div>
       </form>
-    </dialog>`
+    
+    `
   
-    modalContainer.appendChild(modalDiv);
     const modal = document.getElementById("my_modal_1")
     modal.showModal();
   
@@ -98,15 +97,3 @@ const modalShowDetails =async (newsData) => {
 
 loadData()
 loadIdData('01')
-
-// <!-- Open the modal using ID.showModal() method -->
-// <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
-
-// data.forEach((data) => {
-//     const divContainer = document.createElement('div')
-//     divContainer.innerHTML = `
-//     <a class="tab">${data.name}</a> 
-    
-//     `
-//     tabContainer.appendChild(divContainer)
-// })
